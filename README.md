@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Personal portfolio of Mykhaylo Levytskyy, Information Technology graduate focused on cybersecurity and software development.
 
-First, run the development server:
+The hero shows a lion drawn with 0s, 1s and symbols on a canvas. It lies at its resting place, follows the mouse with its head and yawns, or walks across the screen on request.
+
+## Features
+
+- Three languages (English, Portuguese, Ukrainian), picked from the saved choice or the browser language.
+- Dark and light themes without a flash on load.
+- `/cv` page that shows the Portuguese or English CV in the site's style, with a download button for the original PDF of the version being viewed.
+- Projects page, skills, education and contact sections.
+- Responsive from phone to desktop, keyboard accessible, respects reduced motion.
+
+## Stack
+
+Next.js 16 (App Router, static export), React 19, TypeScript, Tailwind CSS 4, `sharp` for image processing.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # static site in out/
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/app/          pages (/, /projects, /cv) and global styles
+src/components/   UI components, including LionCanvas
+src/data/         projects, skills and CV content
+src/i18n/         translations (en, pt, uk) and the language provider
+src/lib/          theme and lion mode helpers
+public/lion/      lion pose maps used by the canvas
+public/downloads/ original CV PDFs
+scripts/          asset build scripts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Asset scripts
 
-## Learn More
+- `npm run lion:build` regenerates the lion pose maps in `public/lion/` from reference images in `lion-source/`.
+- `node scripts/build-photo.mjs` builds `public/me.jpg` (4:5 crop and colour correction) from `photo-source/m_portfolio.jpg`.
 
-To learn more about Next.js, take a look at the following resources:
+The source images in `lion-source/` and `photo-source/` are not part of this repository, so these scripts only run on a machine that has them. The generated files in `public/` are committed, so the site builds without them.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site is exported as static files (`output: "export"`) and hosted on Render. Build command `npm install && npm run build`, publish directory `out`.

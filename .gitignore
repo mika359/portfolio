@@ -45,3 +45,6 @@ next-env.d.ts
 
 # local instructions for Claude
 /CLAUDE.md
+
+# lion source images (7 MB), only needed to regenerate public/lion with `npm run lion:build`
+/lion-source/
