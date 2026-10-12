@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "about": "About me",
+    "projects": "Projects",
+    "language": "Language",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode"
+  },
+  "hero": {
+    "prompt": "whoami",
+    "greeting": "Hi, I'm",
+    "name": "Mykhaylo",
+    "surname": "Levy",
+    "roles": ["Cybersecurity enthusiast", "Aspiring pentester", "Software developer", "CTF player"],
+    "lead": "IT graduate focused on cybersecurity and clean, secure code. I break things to understand them, then build them back stronger.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch",
+    "walk": "Walk",
+    "follow": "Follow cursor",
+    "lionControls": "Lion controls",
+    "scroll": "Scroll"
+  },
+  "about": {
+    "eyebrow": "01 / about",
+    "title": "About me",
+    "p1": "I recently finished my degree in Information Technology and I am looking for my first role in cybersecurity or software development.",
+    "p2": "I enjoy understanding how systems work and how they fail: from network traffic and web vulnerabilities to the code behind them. I learn by doing, in labs, CTFs and personal projects.",
+    "p3": "I am curious, methodical and I like to document what I learn.",
+    "highlights": [
+      { "value": "BSc", "label": "Information Technology" },
+      { "value": "Sec", "label": "Security first mindset" },
+      { "value": "3", "label": "Languages: PT, EN, UK" }
+    ]
+  },
+  "skills": {
+    "eyebrow": "02 / skills",
+    "title": "Skills & tools",
+    "security": "Security",
+    "dev": "Development",
+    "network": "Networking & systems",
+    "tools": "Tools"
+  },
+  "education": {
+    "eyebrow": "03 / journey",
+    "title": "Education & learning",
+    "items": [
+      {
+        "period": "Completed",
+        "title": "BSc in Information Technology",
+        "place": "Your university (edit me)",
+        "text": "Programming, networks, databases, operating systems and information security fundamentals."
+      },
+      {
+        "period": "Ongoing",
+        "title": "Hands-on security labs",
+        "place": "TryHackMe / Hack The Box (edit me)",
+        "text": "Practising enumeration, web exploitation and privilege escalation in legal lab environments."
+      },
+      {
+        "period": "Goal",
+        "title": "Security certification",
+        "place": "Your next certification (edit me)",
+        "text": "Preparing for an industry certification to validate and structure my knowledge."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "04 / contact",
+    "title": "Let's work together",
+    "text": "I am open to junior roles and internships in cybersecurity and development. Send me a message.",
+    "email": "Send email",
+    "cv": "Download CV"
+  },
+  "projects": {
+    "eyebrow": "projects",
+    "title": "Projects",
+    "subtitle": "Selected work in security and development. Replace these examples with your own.",
+    "filterAll": "All",
+    "filterSecurity": "Security",
+    "filterDev": "Development",
+    "code": "Code",
+    "demo": "Demo",
+    "empty": "No projects in this category yet.",
+    "items": {
+      "scanner": {
+        "title": "Network port scanner",
+        "desc": "Multi-threaded TCP scanner with service banner grabbing and a clean report output."
+      },
+      "ctf": {
+        "title": "CTF write-ups",
+        "desc": "Step-by-step solutions to web, crypto and forensics challenges, explained for beginners."
+      },
+      "lab": {
+        "title": "Vulnerable web lab",
+        "desc": "Dockerised lab with intentionally vulnerable apps to practise OWASP Top 10 attacks and fixes."
+      },
+      "auditor": {
+        "title": "Password auditor",
+        "desc": "CLI tool that checks password strength and detects reuse against a local breach list."
+      },
+      "site": {
+        "title": "This portfolio",
+        "desc": "Responsive, trilingual portfolio with a generative ASCII lion. Next.js, TypeScript, Tailwind."
+      },
+      "api": {
+        "title": "Task manager API",
+        "desc": "REST API with authentication, validation and automated tests."
+      }
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "built": "Built with Next.js, 0s and 1s."
+  }
+}

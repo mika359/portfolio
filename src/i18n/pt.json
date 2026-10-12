@@ -1,0 +1,117 @@
+{
+  "nav": {
+    "about": "Sobre mim",
+    "projects": "Projetos",
+    "language": "Idioma",
+    "menu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "toLight": "Mudar para modo claro",
+    "toDark": "Mudar para modo escuro"
+  },
+  "hero": {
+    "prompt": "whoami",
+    "greeting": "Olá, eu sou o",
+    "name": "Mykhaylo",
+    "surname": "Levy",
+    "roles": ["Entusiasta de cibersegurança", "Futuro pentester", "Programador de software", "Jogador de CTF"],
+    "lead": "Licenciado em Tecnologias de Informação, focado em cibersegurança e código limpo e seguro. Quebro as coisas para as perceber e volto a construí-las mais fortes.",
+    "ctaProjects": "Ver projetos",
+    "ctaContact": "Contactar",
+    "walk": "Andar",
+    "follow": "Seguir o cursor",
+    "lionControls": "Controlos do leão",
+    "scroll": "Descer"
+  },
+  "about": {
+    "eyebrow": "01 / sobre",
+    "title": "Sobre mim",
+    "p1": "Terminei recentemente a licenciatura em Tecnologias de Informação e procuro a minha primeira oportunidade em cibersegurança ou programação.",
+    "p2": "Gosto de perceber como os sistemas funcionam e como falham: do tráfego de rede e vulnerabilidades web até ao código por trás. Aprendo a fazer, em laboratórios, CTFs e projetos pessoais.",
+    "p3": "Sou curioso, metódico e gosto de documentar o que aprendo.",
+    "highlights": [
+      { "value": "Lic.", "label": "Tecnologias de Informação" },
+      { "value": "Sec", "label": "Mentalidade de segurança" },
+      { "value": "3", "label": "Línguas: PT, EN, UK" }
+    ]
+  },
+  "skills": {
+    "eyebrow": "02 / competências",
+    "title": "Competências e ferramentas",
+    "security": "Segurança",
+    "dev": "Desenvolvimento",
+    "network": "Redes e sistemas",
+    "tools": "Ferramentas"
+  },
+  "education": {
+    "eyebrow": "03 / percurso",
+    "title": "Formação e aprendizagem",
+    "items": [
+      {
+        "period": "Concluída",
+        "title": "Licenciatura em Tecnologias de Informação",
+        "place": "A tua universidade (editar)",
+        "text": "Programação, redes, bases de dados, sistemas operativos e fundamentos de segurança da informação."
+      },
+      {
+        "period": "Em curso",
+        "title": "Laboratórios práticos de segurança",
+        "place": "TryHackMe / Hack The Box (editar)",
+        "text": "Prática de enumeração, exploração web e escalada de privilégios em ambientes de laboratório legais."
+      },
+      {
+        "period": "Objetivo",
+        "title": "Certificação de segurança",
+        "place": "A tua próxima certificação (editar)",
+        "text": "A preparar uma certificação reconhecida para validar e estruturar os meus conhecimentos."
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "04 / contacto",
+    "title": "Vamos trabalhar juntos",
+    "text": "Estou disponível para posições júnior e estágios em cibersegurança e programação. Envia-me uma mensagem.",
+    "email": "Enviar email",
+    "cv": "Descarregar CV"
+  },
+  "projects": {
+    "eyebrow": "projetos",
+    "title": "Projetos",
+    "subtitle": "Trabalhos selecionados em segurança e programação. Substitui estes exemplos pelos teus.",
+    "filterAll": "Todos",
+    "filterSecurity": "Segurança",
+    "filterDev": "Programação",
+    "code": "Código",
+    "demo": "Demo",
+    "empty": "Ainda não há projetos nesta categoria.",
+    "items": {
+      "scanner": {
+        "title": "Scanner de portas de rede",
+        "desc": "Scanner TCP multi-thread com captura de banners de serviços e relatório limpo."
+      },
+      "ctf": {
+        "title": "Write-ups de CTF",
+        "desc": "Soluções passo a passo de desafios de web, criptografia e forense, explicadas para iniciantes."
+      },
+      "lab": {
+        "title": "Laboratório web vulnerável",
+        "desc": "Laboratório em Docker com aplicações propositadamente vulneráveis para praticar ataques e correções do OWASP Top 10."
+      },
+      "auditor": {
+        "title": "Auditor de palavras-passe",
+        "desc": "Ferramenta de linha de comandos que avalia a força das palavras-passe e deteta reutilização numa lista local de fugas."
+      },
+      "site": {
+        "title": "Este portfolio",
+        "desc": "Portfolio responsivo e trilingue com um leão ASCII generativo. Next.js, TypeScript, Tailwind."
+      },
+      "api": {
+        "title": "API de gestão de tarefas",
+        "desc": "API REST com autenticação, validação e testes automáticos."
+      }
+    }
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados.",
+    "built": "Feito com Next.js, 0s e 1s."
+  }
+}
