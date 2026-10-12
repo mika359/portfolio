@@ -20,13 +20,27 @@ export default function About() {
               <span className="h-3 w-3 rounded-full bg-accent/25" />
               <span className="ml-3 font-mono text-xs text-muted">~/about.md</span>
             </div>
-            <div className="space-y-4 p-5 leading-relaxed text-fg sm:p-6">
-              <p>{t("about.p1")}</p>
-              <p className="text-muted">{t("about.p2")}</p>
-              <p className="font-mono text-sm text-accent">
-                <span className="text-muted">{"// "}</span>
-                {t("about.p3")}
-              </p>
+            <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-start sm:gap-7 sm:p-6">
+              <div className="relative order-first mx-auto aspect-[4/5] w-36 shrink-0 overflow-hidden rounded-xl border border-line sm:order-last sm:mx-0 sm:w-44 lg:w-48">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/me.jpg" alt="Mykhaylo" width={800} height={1000} className="h-full w-full object-cover object-top" />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background: "linear-gradient(to top, color-mix(in srgb, var(--accent-strong) 28%, transparent), transparent 55%)",
+                    mixBlendMode: "soft-light",
+                  }}
+                />
+              </div>
+              <div className="min-w-0 flex-1 space-y-4 leading-relaxed text-fg">
+                <p>{t("about.p1")}</p>
+                <p className="text-muted">{t("about.p2")}</p>
+                <p className="font-mono text-sm text-accent">
+                  <span className="text-muted">{"// "}</span>
+                  {t("about.p3")}
+                </p>
+              </div>
             </div>
           </div>
         </div>

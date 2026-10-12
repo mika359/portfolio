@@ -12,10 +12,10 @@ import { getLionMode, type LionMode } from "@/lib/lionMode";
  * are dots, mid tones are digits, highlights are heavy symbols. Poses dissolve into each other
  * cell by cell, like particles re-forming.
  *
- * The requested behaviour comes from src/lib/lionMode.ts (sit | walk | watch):
- *  - sit (default): the lion lies at its resting place looking at the visitor, turns its head and yawns.
+ * The requested behaviour comes from src/lib/lionMode.ts (sit | walk):
+ *  - sit (default): the lion lies at its resting place, follows the mouse with its head (turning from
+ *                   profile-left through frontal to profile-right) and yawns when idle.
  *  - walk:          it gets up and walks from left to right across the hero in a loop.
- *  - watch:         it goes to the resting place, lies down and follows the mouse with its head.
  * Internal phases: walk, approach (walks to the resting place), settle (lies down), sit, rise (gets up).
  */
 
@@ -27,10 +27,11 @@ const CROSS_SECONDS = 24; // time to cross the screen: a calm walk, also used wh
 const SIT_ZOOM = 1.3; // enlargement of the lying pose
 const HEAD = { x: 344, y: 212, rx: 82, ry: 88 }; // head of the lying pose, in map pixels (for the idle motion)
 const FACE = { x: 349, y: 230, rx: 30, ry: 42 }; // eyes, nose and mouth only: the part that follows the mouse
-const TURN_X = 3.4; // largest sideways shift of the whole head (mane and face) while following the mouse, in grid cells
-const TURN_Y = 1.8; // largest vertical shift of the head, in grid cells
-const GAZE_X = 2.2; // extra shift of the face only (eyes, nose, mouth), so the face turns a bit more than the mane
-const GAZE_Y = 1.2;
+const TURN_X = 4.5; // largest sideways shift of the whole head (mane and face) while following the mouse, in grid cells
+const TURN_Y = 3; // largest vertical shift of the head, in grid cells
+const GAZE_X = 3; // extra shift of the face only (eyes, nose, mouth), so the face turns a bit more than the mane
+const GAZE_Y = 2;
+const FOLLOW_RANGE = 0.3; // mouse distance (fraction of the hero width) at which the head is fully turned
 const V_MIN = 0.11; // below this a cell stays empty, so the dark body reads as a void with a glowing outline
 
 const PALETTE: Record<Theme, [string, string, string, string]> = {
@@ -166,7 +167,7 @@ export default function LionCanvas() {
       lw = Math.min(W * (small ? 0.98 : 0.72), (H * 0.7) / aspect);
       const lh = lw * aspect;
       restX = small ? (W - lw) / 2 : W - lw - W * 0.015;
-      y0 = H - lh - 6;
+      y0 = H - lh - 6 + (small ? lh * 0.04 : 0);
       if (prevW > 1) lx *= W / prevW;
       if (mode === "sit" || mode === "settle") lx = restX;
 
@@ -220,7 +221,7 @@ export default function LionCanvas() {
 
     /** Advance the behaviour state machine by dt seconds. */
     const update = (dt: number, target: LionMode) => {
-      const resting = target !== "walk"; // sit and watch both mean "be at the resting place"
+      const resting = target !== "walk";
       const speed = (W + lw) / CROSS_SECONDS;
       const wrap = () => {
         if (lx > W + 40) lx = -lw - 40;
@@ -344,6 +345,7 @@ export default function LionCanvas() {
       const S0 = sitGrids[0];
       const S1 = sitGrids[Math.min(1, sitGrids.length - 1)];
       const S2 = sitGrids[Math.min(2, sitGrids.length - 1)]; // mouth open
+      const S3 = sitGrids[3] ?? S1; // head turned to the left
       const sitS = smooth(0, 1, sitMix);
       const headS = smooth(0, 1, headMix);
       const mouthS = smooth(0, 1, mouthMix);
@@ -355,9 +357,9 @@ export default function LionCanvas() {
       // and the tail tip swishes on the left.
       const idle = still ? 0 : smooth(0.7, 1, sitS);
 
-      // Watch mode: the head follows the mouse. The direction is measured from the head to the pointer
-      // and eased, so the head glides instead of snapping.
-      const wantsWatch = !still && getLionMode() === "watch" && mode === "sit";
+      // The head follows the mouse while the lion rests and faces the visitor. The direction is measured
+      // from the head to the pointer and eased, so the head glides instead of snapping.
+      const wantsWatch = !still && mode === "sit" && headMix >= 1 && pointer !== null;
       watchMix = clamp01(watchMix + (wantsWatch ? dt / 0.6 : -dt / 0.5));
       let tx = 0;
       let ty = 0;
@@ -365,7 +367,7 @@ export default function LionCanvas() {
         const hr = host.getBoundingClientRect();
         const hx = hr.left + gx0 + (headX + 0.5) * cw;
         const hy = hr.top + y0 + (headY + 0.5) * ch;
-        tx = Math.max(-1, Math.min(1, (pointer.x - hx) / (W * 0.35)));
+        tx = Math.max(-1, Math.min(1, (pointer.x - hx) / (W * FOLLOW_RANGE)));
         ty = Math.max(-1, Math.min(1, (pointer.y - hy) / (H * 0.5)));
       }
       const ease = Math.min(1, dt * 6);
@@ -384,6 +386,11 @@ export default function LionCanvas() {
       const turnY = idle * wm * followY * TURN_Y;
       const gazeX = idle * wm * followX * GAZE_X;
       const gazeY = idle * wm * followY * GAZE_Y;
+      // Larger turns swap the head for a profile pose, cell by cell: left profile when the mouse is on
+      // the left, right profile when it is on the right, frontal in between.
+      const yawL = idle * wm * smooth(0.12, 0.85, -followX);
+      const yawR = idle * wm * smooth(0.12, 0.85, followX);
+      const mouthEff = mouthS * clamp01(1 - 2.5 * (yawL + yawR));
 
       for (const b of buckets) b.length = 0;
       const tick = Math.floor(clock * 3);
@@ -441,7 +448,12 @@ export default function LionCanvas() {
               }
             }
             let gs = h2(x, y, 23) < headS ? S1[sidx] : S0[sidx];
-            if (mouthS > 0 && h2(x, y, 41) < mouthS) gs = S2[sidx];
+            if (yawL > 0 || yawR > 0) {
+              const r = h2(x, y, 53);
+              if (r < yawL) gs = S3[sidx];
+              else if (r < yawL + yawR) gs = S0[sidx];
+            }
+            if (mouthEff > 0 && h2(x, y, 41) < mouthEff) gs = S2[sidx];
             g = h2(x, y, 37) < sitS ? gs : gw;
           }
           const v = g / 255;
@@ -541,7 +553,11 @@ export default function LionCanvas() {
     const onPointer = (e: PointerEvent) => {
       pointer = { x: e.clientX, y: e.clientY };
     };
+    const onLeave = () => {
+      pointer = null;
+    };
     window.addEventListener("pointermove", onPointer, { passive: true });
+    document.documentElement.addEventListener("pointerleave", onLeave);
 
     const load = (src: string) =>
       new Promise<HTMLImageElement>((resolve, reject) => {
@@ -583,6 +599,7 @@ export default function LionCanvas() {
       ro.disconnect();
       io.disconnect();
       window.removeEventListener("pointermove", onPointer);
+      document.documentElement.removeEventListener("pointerleave", onLeave);
     };
   }, []);
 

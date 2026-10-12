@@ -64,7 +64,7 @@ export default function Hero() {
       />
       <LionCanvas />
 
-      <div className="container-x relative z-10 px-5 pt-10 sm:pt-16 lg:pt-20">
+      <div className="container-x relative z-10 px-5 pt-10 pb-[52vw] min-[700px]:pb-0 sm:pt-16 lg:pt-20">
         <div data-lion-avoid className="flex w-fit max-w-full flex-col">
         <p className="fade-up font-mono text-sm text-muted" style={{ animationDelay: "0.05s" }}>
           <span className="text-accent">$</span> {t("hero.prompt")}

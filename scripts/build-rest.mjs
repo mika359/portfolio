@@ -232,8 +232,9 @@ function strandsSvg(R, mode, n) {
     let x1 = HC.x + Math.cos(a) * r1;
     let y1 = HC.y + Math.sin(a) * r1 * 1.05;
     if (mode === "profile") x1 -= R * 0.3 * rand();
+    else if (mode === "profileL") x1 += R * 0.3 * rand();
     else y1 += R * 0.22 * (0.4 + Math.max(0, Math.sin(a))) * rand();
-    const mx = (x0 + x1) / 2 + (rand() - 0.5) * R * 0.5 + (mode === "profile" ? -R * 0.1 : 0);
+    const mx = (x0 + x1) / 2 + (rand() - 0.5) * R * 0.5 + (mode === "profile" ? -R * 0.1 : mode === "profileL" ? R * 0.1 : 0);
     const my = (y0 + y1) / 2 + (rand() - 0.5) * R * 0.5 + (mode === "front" ? R * 0.08 : 0);
     paths += `<path d="M${x0.toFixed(1)},${y0.toFixed(1)} Q${mx.toFixed(1)},${my.toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}" stroke="white" stroke-opacity="${(0.08 + 0.18 * rand()).toFixed(2)}" stroke-width="${(0.6 + rand() * 0.7).toFixed(2)}" fill="none" stroke-linecap="round"/>`;
   }
@@ -318,6 +319,28 @@ const front = Buffer.from(bodyNoHead);
       front[i] = clamp(front[i] * (1 - a) + h * a);
     }
 }
+// Crown fill: the photo's top-centre of the mane is near black and leaves a hole above the forehead.
+// Fill it with fur-like streaks that fan out from the forehead, fading into the surrounding mane.
+{
+  const cx = HC.x + 3;
+  const cy = HC.y - 46;
+  const px = cx; // hair radiates from the parting above the forehead
+  const py = cy + 30;
+  for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++) {
+      const e = Math.hypot((x - cx) / 30, (y - cy) / 26);
+      if (e >= 1) continue;
+      const a = 1 - smooth(0.45, 1, e);
+      const ang = Math.atan2(y - py, x - px);
+      const r = Math.hypot(x - px, y - py);
+      // Wide tonal range (dark gaps, mid tones, bright highlights) like the rest of the mane.
+      const streak = 0.5 + 0.5 * Math.sin(ang * 46 + 2.4 * Math.sin(r * 0.17) + 1.7 * Math.sin(ang * 13));
+      const s = Math.min(1, streak * (0.45 + 0.8 * rand()));
+      const fur = 14 + 236 * s ** 1.5;
+      const i = y * W + x;
+      front[i] = clamp(Math.max(front[i], fur * a));
+    }
+}
 const frontStrands = await renderSvg(strandsSvg(76, "front", 260));
 for (let i = 0; i < front.length; i++) front[i] = clamp(Math.max(front[i], frontStrands[i] * 0.9));
 
@@ -362,6 +385,29 @@ const front2 = Buffer.from(front);
   }
 }
 
+// Head turned to the left (mirror of the profile head): used when the mouse is on the left of the lion.
+const profileL = Buffer.from(bodyNoHead);
+{
+  const k = 0.7;
+  const sx0 = 412;
+  const sy0 = 152;
+  const rx = 124 * k;
+  const ry = 106 * k;
+  for (let y = 0; y < H; y++)
+    for (let x = 0; x < W; x++) {
+      const e = Math.hypot((x - HC.x) / rx, (y - HC.y) / ry);
+      const a = 1 - smooth(0.7, 1, e);
+      if (a <= 0) continue;
+      const wx = Math.round(sx0 - (x - HC.x) / k);
+      const wy = Math.round(sy0 + (y - HC.y) / k);
+      if (wx < 0 || wy < 0 || wx >= W || wy >= H) continue;
+      const i = y * W + x;
+      profileL[i] = clamp(bodyNoHead[i] * (1 - a) + Math.min(255, walk[wy * W + wx] * 1.15) * a);
+    }
+}
+const profStrandsL = await renderSvg(strandsSvg(70, "profileL", 300));
+for (let i = 0; i < profileL.length; i++) profileL[i] = clamp(Math.max(profileL[i], profStrandsL[i] * 0.9));
+
 // Darken the mid-tones so features (eyes, nose, mouth) stand out once turned into characters.
 const darken = (buf) => Buffer.from(buf.map((v) => clamp(255 * (v / 255) ** 1.12 * 1.04)));
 async function save(buf0, name) {
@@ -371,8 +417,9 @@ async function save(buf0, name) {
 await save(profile, "sit-0.png");
 await save(front, "sit-1.png");
 await save(front2, "sit-2.png");
+await save(profileL, "sit-3.png");
 
 const manifest = JSON.parse(await readFile(`${OUT}/manifest.json`, "utf8"));
-manifest.sit = 3;
+manifest.sit = 4;
 await writeFile(`${OUT}/manifest.json`, JSON.stringify(manifest));
 console.log("Wrote sit-0.png (lying, head in profile) and sit-1.png (lying, looking at the viewer)");

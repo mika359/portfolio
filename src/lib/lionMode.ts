@@ -4,18 +4,16 @@ import { useSyncExternalStore } from "react";
 
 /**
  * What the hero lion is asked to do. It is kept on <html data-lion="..."> so the canvas can read it
- * every frame without React re-renders, and the buttons subscribe to it.
- *  - sit:   rests (default), head turns and it yawns from time to time
- *  - walk:  walks across the hero
- *  - watch: rests and follows the mouse with its head
+ * every frame without React re-renders, and the button subscribes to it.
+ *  - sit:  rests (default), follows the mouse with its head and yawns from time to time
+ *  - walk: walks across the hero
  */
-export type LionMode = "sit" | "walk" | "watch";
+export type LionMode = "sit" | "walk";
 
 const listeners = new Set<() => void>();
 
 export function getLionMode(): LionMode {
-  const v = document.documentElement.dataset.lion;
-  return v === "walk" || v === "watch" ? v : "sit";
+  return document.documentElement.dataset.lion === "walk" ? "walk" : "sit";
 }
 
 export function setLionMode(mode: LionMode) {
