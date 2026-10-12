@@ -1,13 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useI18n } from "@/i18n/I18nProvider";
 
-// Placeholders: replace with your real links.
-const EMAIL = "mailto:hello@example.com";
+const EMAIL = "mailto:mykhaylo359@gmail.com";
 const LINKS = [
-  { label: "GitHub", href: "https://github.com/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/" },
-  { label: "TryHackMe", href: "https://tryhackme.com/" },
+  { label: "GitHub", href: "https://github.com/mika359" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/mykhaylo359" },
 ];
 
 export default function Contact() {
@@ -25,9 +24,9 @@ export default function Contact() {
             <a href={EMAIL} className="btn btn-primary">
               {t("contact.email")}
             </a>
-            <a href="/cv.pdf" className="btn btn-ghost" download>
+            <Link href="/cv" className="btn btn-ghost">
               {t("contact.cv")}
-            </a>
+            </Link>
           </div>
 
           <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-sm">

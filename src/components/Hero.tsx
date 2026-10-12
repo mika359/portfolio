@@ -98,6 +98,9 @@ export default function Hero() {
           <Link href="/#contact" className="btn btn-ghost">
             {t("hero.ctaContact")}
           </Link>
+          <Link href="/cv" className="btn btn-ghost">
+            {t("hero.ctaCv")}
+          </Link>
         </div>
         <div className="fade-up mt-3" style={{ animationDelay: "0.7s" }}>
           <LionControls />

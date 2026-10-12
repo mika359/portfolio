@@ -1,17 +1,21 @@
-// Placeholder projects: edit freely. Titles/descriptions live in src/i18n/*.json (projects.items.<id>).
+// Real projects have tags/code/demo; entries with `soon: true` only show their category and a centred "Soon".
+// Titles/descriptions of real projects live in src/i18n/*.json (projects.items.<id>).
 export interface Project {
   id: string;
   category: "security" | "dev";
-  tags: string[];
-  code: string;
+  soon?: boolean;
+  tags?: string[];
+  code?: string;
   demo?: string;
 }
 
 export const projects: Project[] = [
-  { id: "scanner", category: "security", tags: ["Python", "Networking", "Sockets"], code: "https://github.com/" },
-  { id: "ctf", category: "security", tags: ["CTF", "Web", "Crypto", "Forensics"], code: "https://github.com/" },
-  { id: "lab", category: "security", tags: ["Docker", "OWASP", "PHP"], code: "https://github.com/" },
-  { id: "auditor", category: "security", tags: ["Python", "CLI", "Hashing"], code: "https://github.com/" },
-  { id: "site", category: "dev", tags: ["Next.js", "TypeScript", "Tailwind"], code: "https://github.com/", demo: "/" },
-  { id: "api", category: "dev", tags: ["Node.js", "REST", "JWT", "Tests"], code: "https://github.com/" },
+  { id: "site", category: "dev", tags: ["Next.js", "TypeScript", "Tailwind"], code: "https://github.com/mika359/portfolio", demo: "/" },
+  // Placeholder links: replace code/demo with the real wedding site and repository.
+  { id: "wedding", category: "dev", tags: ["HTML", "CSS", "JavaScript", "Bootstrap", "OpenStreetMap"], code: "https://github.com/mika359", demo: "#" },
+  { id: "scanner", category: "security", soon: true },
+  { id: "ctf", category: "security", soon: true },
+  { id: "lab", category: "security", soon: true },
+  { id: "auditor", category: "security", soon: true },
+  { id: "api", category: "dev", soon: true },
 ];

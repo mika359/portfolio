@@ -13,10 +13,16 @@
     "greeting": "Hi, I'm",
     "name": "Mykhaylo",
     "surname": "Levytskyy",
-    "roles": ["Cybersecurity enthusiast", "Aspiring pentester", "Software developer", "CTF player"],
+    "roles": [
+      "Cybersecurity enthusiast",
+      "Aspiring pentester",
+      "Software developer",
+      "CTF player"
+    ],
     "lead": "IT graduate focused on cybersecurity and clean, secure code. I break things to understand them, then build them back stronger.",
     "ctaProjects": "View projects",
     "ctaContact": "Get in touch",
+    "ctaCv": "CV",
     "walk": "Walk",
     "lionControls": "Lion controls",
     "scroll": "Scroll"
@@ -24,13 +30,22 @@
   "about": {
     "eyebrow": "01 / about",
     "title": "About me",
-    "p1": "I recently finished my degree in Information Technology and I am looking for my first role in cybersecurity or software development.",
-    "p2": "I enjoy understanding how systems work and how they fail: from network traffic and web vulnerabilities to the code behind them. I learn by doing, in labs, CTFs and personal projects.",
-    "p3": "I am curious, methodical and I like to document what I learn.",
+    "p1": "Information Technology graduate from the Faculty of Sciences, University of Lisbon (January 2026), with a strong interest in information security and cybersecurity.",
+    "p2": "My academic projects gave me hands-on experience with secure client-server applications, TLS, encryption, digital signatures and message authentication codes. I enjoy investigating how systems behave, spotting weaknesses and finding practical ways to fix them.",
+    "p3": "I am curious, responsible and organised.",
     "highlights": [
-      { "value": "BSc", "label": "Information Technology" },
-      { "value": "Sec", "label": "Security first mindset" },
-      { "value": "3", "label": "Languages: PT, EN, UK" }
+      {
+        "value": "BSc",
+        "label": "Information Technology, University of Lisbon"
+      },
+      {
+        "value": "Sec",
+        "label": "Security: TLS, encryption, signatures"
+      },
+      {
+        "value": "3",
+        "label": "Languages: UA, PT, EN"
+      }
     ]
   },
   "skills": {
@@ -46,22 +61,22 @@
     "title": "Education & learning",
     "items": [
       {
-        "period": "Completed",
+        "period": "Completed · Jan 2026",
         "title": "BSc in Information Technology",
-        "place": "Your university (edit me)",
-        "text": "Programming, networks, databases, operating systems and information security fundamentals."
+        "place": "Faculty of Sciences, University of Lisbon",
+        "text": "Information Security, Computer Networks, Operating Systems, Databases, Software and Service Design, Web Technologies."
       },
       {
-        "period": "Ongoing",
-        "title": "Hands-on security labs",
-        "place": "TryHackMe / Hack The Box (edit me)",
-        "text": "Practising enumeration, web exploitation and privilege escalation in legal lab environments."
+        "period": "In progress",
+        "title": "Claude 101 and Building with the Claude API",
+        "place": "Anthropic Academy",
+        "text": "Courses on using Claude and building applications with the Claude API."
       },
       {
         "period": "Goal",
-        "title": "Security certification",
-        "place": "Your next certification (edit me)",
-        "text": "Preparing for an industry certification to validate and structure my knowledge."
+        "title": "First role in information security",
+        "place": "Cybersecurity assessments · IT risk · security controls",
+        "text": "Starting my career in information security and learning IT risk management and IT general controls along the way."
       }
     ]
   },
@@ -70,12 +85,13 @@
     "title": "Let's work together",
     "text": "I am open to junior roles and internships in cybersecurity and development. Send me a message.",
     "email": "Send email",
-    "cv": "Download CV"
+    "cv": "View CV"
   },
   "projects": {
     "eyebrow": "projects",
     "title": "Projects",
-    "subtitle": "Selected work in security and development. Replace these examples with your own.",
+    "subtitle": "Work in security and development. These projects are on their way.",
+    "soon": "Soon",
     "filterAll": "All",
     "filterSecurity": "Security",
     "filterDev": "Development",
@@ -83,31 +99,25 @@
     "demo": "Demo",
     "empty": "No projects in this category yet.",
     "items": {
-      "scanner": {
-        "title": "Network port scanner",
-        "desc": "Multi-threaded TCP scanner with service banner grabbing and a clean report output."
-      },
-      "ctf": {
-        "title": "CTF write-ups",
-        "desc": "Step-by-step solutions to web, crypto and forensics challenges, explained for beginners."
-      },
-      "lab": {
-        "title": "Vulnerable web lab",
-        "desc": "Dockerised lab with intentionally vulnerable apps to practise OWASP Top 10 attacks and fixes."
-      },
-      "auditor": {
-        "title": "Password auditor",
-        "desc": "CLI tool that checks password strength and detects reuse against a local breach list."
-      },
       "site": {
         "title": "This portfolio",
         "desc": "Responsive, trilingual portfolio with a generative ASCII lion. Next.js, TypeScript, Tailwind."
       },
-      "api": {
-        "title": "Task manager API",
-        "desc": "REST API with authentication, validation and automated tests."
+      "wedding": {
+        "title": "Wedding website",
+        "desc": "Responsive two-language wedding website with a guest registration form that saves entries automatically to Google Sheets and an OpenStreetMap map of the venue."
       }
     }
+  },
+  "cv": {
+    "eyebrow": "cv",
+    "title": "Curriculum vitae",
+    "headline": "Information Technology graduate · Lisbon, Portugal",
+    "version": "English version",
+    "ukNote": "",
+    "download": "Download CV (PDF)",
+    "downloadHint": "The original PDF",
+    "contact": "Contact"
   },
   "footer": {
     "rights": "All rights reserved.",

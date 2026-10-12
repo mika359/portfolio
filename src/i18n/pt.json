@@ -13,10 +13,16 @@
     "greeting": "Olá, eu sou o",
     "name": "Mykhaylo",
     "surname": "Levytskyy",
-    "roles": ["Entusiasta de cibersegurança", "Futuro pentester", "Programador de software", "Jogador de CTF"],
+    "roles": [
+      "Entusiasta de cibersegurança",
+      "Futuro pentester",
+      "Programador de software",
+      "Jogador de CTF"
+    ],
     "lead": "Licenciado em Tecnologias de Informação, focado em cibersegurança e código limpo e seguro. Quebro as coisas para as perceber e volto a construí-las mais fortes.",
     "ctaProjects": "Ver projetos",
     "ctaContact": "Contactar",
+    "ctaCv": "CV",
     "walk": "Andar",
     "lionControls": "Controlos do leão",
     "scroll": "Descer"
@@ -24,13 +30,22 @@
   "about": {
     "eyebrow": "01 / sobre",
     "title": "Sobre mim",
-    "p1": "Terminei recentemente a licenciatura em Tecnologias de Informação e procuro a minha primeira oportunidade em cibersegurança ou programação.",
-    "p2": "Gosto de perceber como os sistemas funcionam e como falham: do tráfego de rede e vulnerabilidades web até ao código por trás. Aprendo a fazer, em laboratórios, CTFs e projetos pessoais.",
-    "p3": "Sou curioso, metódico e gosto de documentar o que aprendo.",
+    "p1": "Licenciado em Tecnologias de Informação pela Faculdade de Ciências da Universidade de Lisboa (janeiro de 2026), com forte interesse em segurança da informação e cibersegurança.",
+    "p2": "Os meus projetos académicos deram-me experiência prática com aplicações cliente/servidor seguras, TLS, cifras, assinaturas digitais e códigos de autenticação de mensagens. Gosto de investigar como os sistemas se comportam, identificar fraquezas e encontrar formas práticas de as corrigir.",
+    "p3": "Sou curioso, responsável e organizado.",
     "highlights": [
-      { "value": "Lic.", "label": "Tecnologias de Informação" },
-      { "value": "Sec", "label": "Mentalidade de segurança" },
-      { "value": "3", "label": "Línguas: PT, EN, UK" }
+      {
+        "value": "Lic.",
+        "label": "Tecnologias de Informação, Universidade de Lisboa"
+      },
+      {
+        "value": "Sec",
+        "label": "Segurança: TLS, cifras, assinaturas"
+      },
+      {
+        "value": "3",
+        "label": "Línguas: UA, PT, EN"
+      }
     ]
   },
   "skills": {
@@ -46,22 +61,22 @@
     "title": "Formação e aprendizagem",
     "items": [
       {
-        "period": "Concluída",
+        "period": "Concluída · jan. 2026",
         "title": "Licenciatura em Tecnologias de Informação",
-        "place": "A tua universidade (editar)",
-        "text": "Programação, redes, bases de dados, sistemas operativos e fundamentos de segurança da informação."
+        "place": "Faculdade de Ciências da Universidade de Lisboa",
+        "text": "Segurança Informática, Redes Informáticas, Sistemas de Bases de Dados, Engenharia de Software e Desenvolvimento Web."
       },
       {
         "period": "Em curso",
-        "title": "Laboratórios práticos de segurança",
-        "place": "TryHackMe / Hack The Box (editar)",
-        "text": "Prática de enumeração, exploração web e escalada de privilégios em ambientes de laboratório legais."
+        "title": "Claude 101 e Building with the Claude API",
+        "place": "Anthropic Academy",
+        "text": "Cursos sobre como usar o Claude e criar aplicações com a API do Claude."
       },
       {
         "period": "Objetivo",
-        "title": "Certificação de segurança",
-        "place": "A tua próxima certificação (editar)",
-        "text": "A preparar uma certificação reconhecida para validar e estruturar os meus conhecimentos."
+        "title": "Primeira função em segurança da informação",
+        "place": "Avaliações de cibersegurança · risco de TI · controlos de segurança",
+        "text": "Iniciar a carreira em segurança da informação e aprender gestão de risco de TI e controlos gerais de TI pelo caminho."
       }
     ]
   },
@@ -70,12 +85,13 @@
     "title": "Vamos trabalhar juntos",
     "text": "Estou disponível para posições júnior e estágios em cibersegurança e programação. Envia-me uma mensagem.",
     "email": "Enviar email",
-    "cv": "Descarregar CV"
+    "cv": "Ver CV"
   },
   "projects": {
     "eyebrow": "projetos",
     "title": "Projetos",
-    "subtitle": "Trabalhos selecionados em segurança e programação. Substitui estes exemplos pelos teus.",
+    "subtitle": "Trabalhos em segurança e programação. Estes projetos estão a caminho.",
+    "soon": "Brevemente",
     "filterAll": "Todos",
     "filterSecurity": "Segurança",
     "filterDev": "Programação",
@@ -83,31 +99,25 @@
     "demo": "Demo",
     "empty": "Ainda não há projetos nesta categoria.",
     "items": {
-      "scanner": {
-        "title": "Scanner de portas de rede",
-        "desc": "Scanner TCP multi-thread com captura de banners de serviços e relatório limpo."
-      },
-      "ctf": {
-        "title": "Write-ups de CTF",
-        "desc": "Soluções passo a passo de desafios de web, criptografia e forense, explicadas para iniciantes."
-      },
-      "lab": {
-        "title": "Laboratório web vulnerável",
-        "desc": "Laboratório em Docker com aplicações propositadamente vulneráveis para praticar ataques e correções do OWASP Top 10."
-      },
-      "auditor": {
-        "title": "Auditor de palavras-passe",
-        "desc": "Ferramenta de linha de comandos que avalia a força das palavras-passe e deteta reutilização numa lista local de fugas."
-      },
       "site": {
         "title": "Este portfolio",
         "desc": "Portfolio responsivo e trilingue com um leão ASCII generativo. Next.js, TypeScript, Tailwind."
       },
-      "api": {
-        "title": "API de gestão de tarefas",
-        "desc": "API REST com autenticação, validação e testes automáticos."
+      "wedding": {
+        "title": "Website de casamento",
+        "desc": "Website responsivo e bilingue para um casamento, com formulário de registo de convidados guardado automaticamente no Google Sheets e mapa OpenStreetMap com a localização."
       }
     }
+  },
+  "cv": {
+    "eyebrow": "cv",
+    "title": "Curriculum vitae",
+    "headline": "Licenciado em Tecnologias de Informação · Lisboa, Portugal",
+    "version": "Versão em português",
+    "ukNote": "",
+    "download": "Descarregar CV (PDF)",
+    "downloadHint": "O PDF original",
+    "contact": "Contacto"
   },
   "footer": {
     "rights": "Todos os direitos reservados.",

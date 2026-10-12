@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# original portrait (15 MB), processed by scripts/build-photo.mjs
+/photo-source/
+
+# local instructions for Claude
+/CLAUDE.md

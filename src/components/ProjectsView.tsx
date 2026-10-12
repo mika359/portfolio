@@ -47,29 +47,41 @@ export default function ProjectsView() {
         ) : (
           <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {visible.map((p) => (
-              <li key={p.id} className="card flex flex-col p-6">
+              <li key={p.id} className="card flex min-h-52 flex-col p-6">
                 <p className="font-mono text-xs uppercase tracking-widest text-accent">
                   {p.category === "security" ? t("projects.filterSecurity") : t("projects.filterDev")}
                 </p>
-                <h2 className="mt-2 text-xl font-semibold">{t(`projects.items.${p.id}.title`)}</h2>
-                <p className="mt-3 flex-1 text-muted">{t(`projects.items.${p.id}.desc`)}</p>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((tag) => (
-                    <li key={tag} className="rounded-md border border-line bg-accent/5 px-2 py-0.5 font-mono text-xs">
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-5 flex gap-4 font-mono text-sm">
-                  <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-                    {t("projects.code")} ↗
-                  </a>
-                  {p.demo && (
-                    <a href={p.demo} className="text-accent hover:underline">
-                      {t("projects.demo")} ↗
-                    </a>
-                  )}
-                </div>
+                {p.soon ? (
+                  <div className="flex flex-1 items-center justify-center">
+                    <span className="font-mono text-2xl font-semibold uppercase tracking-widest text-accent/80">
+                      {t("projects.soon")}
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    <h2 className="mt-2 text-xl font-semibold">{t(`projects.items.${p.id}.title`)}</h2>
+                    <p className="mt-3 flex-1 text-muted">{t(`projects.items.${p.id}.desc`)}</p>
+                    <ul className="mt-4 flex flex-wrap gap-2">
+                      {p.tags?.map((tag) => (
+                        <li key={tag} className="rounded-md border border-line bg-accent/5 px-2 py-0.5 font-mono text-xs">
+                          {tag}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-5 flex gap-4 font-mono text-sm">
+                      {p.code && (
+                        <a href={p.code} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+                          {t("projects.code")} ↗
+                        </a>
+                      )}
+                      {p.demo && (
+                        <a href={p.demo} className="text-accent hover:underline">
+                          {t("projects.demo")} ↗
+                        </a>
+                      )}
+                    </div>
+                  </>
+                )}
               </li>
             ))}
           </ul>
