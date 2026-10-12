@@ -18,7 +18,7 @@ export type Lang = "en" | "pt" | "uk";
 export const LANGS: { code: Lang; short: string; label: string }[] = [
   { code: "en", short: "EN", label: "English" },
   { code: "pt", short: "PT", label: "Português" },
-  { code: "uk", short: "UA", label: "Українська" },
+  { code: "uk", short: "UK", label: "Українська" },
 ];
 
 const dicts: Record<Lang, unknown> = { en, pt, uk };
